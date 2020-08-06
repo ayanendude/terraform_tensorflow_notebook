@@ -1,49 +1,23 @@
-variable "selenium_chart_version" {
-  description = "Selenium chart version. More info: https://github.com/helm/charts/tree/master/stable/selenium"
+variable "chart_version" {
+  description = "Rensorflow_notebook chart version. More info: https://github.com/helm/charts/tree/master/stable/tensorflow-notebook"
   type        = string
-  default     = "1.1.2"
+  default     = "0.1.3"
 }
-variable "ui_service_type" {
-  description = "Selenium hub service type"
+variable "service_type" {
+  description = "tensorflow_notebook service type"
   default     = "NodePort"
 }
-variable "chrome_replicas" {
-  description = "Number of selenium chrome replicas"
-  default     = 1
+variable "tensorboard_image_pullPolicy" {
+  description = "Image pull policy"
+  default     = "Always"
 }
-
-variable "chrome_tag" {
-  description = "Version of chrome in selenium replicas"
+variable "tensorboard_image_tag" {
+  description = "TensorFlow Development image tag"
   type        = string
-  default     = "3.141.59"
+  default     = "latest"
 }
-
-variable "firefox_replicas" {
-  description = "Number of selenium statefulset replica"
-  default     = 1
-}
-
-variable "firefox_tag" {
-  description = "Version of Firefox on the selenium replicas"
+variable "tensorboard_image_repository" {
+  description = "TensorFlow Development image repo"
   type        = string
-  default     = "3.141.59"
+  default     = "tensorflow/tensorflow"
 }
-
-variable "hub_tag" {
-  description = "tag"
-  type        = string
-  default     = "3.141.59"
-}
-
-variable "hub_javaOpts" {
-  description = "javaOpts"
-  type        = string
-  default     = "-Xmx400m"
-}
-
-variable "chrome_javaOpts" {
-  description = "javaOpts"
-  type        = string
-  default     = "-Xmx400m"
-}
-

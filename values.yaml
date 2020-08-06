@@ -1,12 +1,7 @@
-chrome:
-  resources:
-    limits:
-      cpu: "0.1"
-      memory: "100Mi"
-firefox:
-  resources:
-    limits:
-      cpu: "0.1"
-      memory: "100Mi"
-hub:
-  serviceType: "NodePort"
+jupyter:
+  password: tensorflow
+tensorboard:
+  image:
+    pullPolicy: IfNotPresent
+service:
+  type: NodePort

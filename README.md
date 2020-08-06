@@ -1,12 +1,16 @@
-﻿## Inputs
+﻿## Description
+This repository is created to demonstrate how we can deploy application on k8s cluster 
+with Jenkins, Terraform and Helm. Intention is to showcase minimum viable product. Customizations 
+are encouraged as required. 
+
+## Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| selenium_chart_version | Selenium chart version. More info: https://github.com/helm/charts/tree/master/stable/selenium | string | `3.141.59` | no |
-| chrome_replicas | Number of selenium chrome replica | string | `1` | no |
-| firefox_replicas | Number of selenium firefox replica | string | `1` | no |
-| chrome_tag | Version of Chrome on the selenium replicas | string | latest | no |
-| firefox_tag | Version of Firefox on the selenium replicas | string | latest | no |
-| ui_service_type | The kubernetes service type for the UI | string | `NodePort` | no |
+| chart_version | Tensorflow chart version. More info: https://github.com/helm/charts/tree/master/stable/tensorflow-notebook | string | `0.1.3` | no |
+| tensorboard_image_pullPolicy | Tensorboard image pullPolicy | string | `Always` | no |
+| tensorboard_image_tag | TensorFlow Development image tag | string | `latest` | no |
+| tensorboard_image_repository | TensorFlow Development image repo | string | `tensorflow/tensorflow` | no |
+| service_type | The kubernetes service type | string | `NodePort` | no |
 
 
 ## Probable error you may face
