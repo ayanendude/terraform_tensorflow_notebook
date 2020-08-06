@@ -1,0 +1,12 @@
+chrome:
+  resources:
+    limits:
+      cpu: "0.1"
+      memory: "100Mi"
+firefox:
+  resources:
+    limits:
+      cpu: "0.1"
+      memory: "100Mi"
+hub:
+  serviceType: "NodePort"
