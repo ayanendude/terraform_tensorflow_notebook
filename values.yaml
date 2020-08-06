@@ -1,0 +1,7 @@
+jupyter:
+  password: tensorflow
+tensorboard:
+  image:
+    pullPolicy: IfNotPresent
+service:
+  type: NodePort
