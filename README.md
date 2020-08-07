@@ -79,8 +79,8 @@ are encouraged as required.
     2 Insufficient cpu, 2 Insufficient memory.
 
     ### Reason: 
-    Cluster has limited memory and cpu. By default, chart tries to craete with
-    .5 cpu and 500 MiB memory. Multiple of these may exhaust cluster.
+    Cluster has limited memory and cpu. By default, chart tries to craete pods 
+    with certain cpu and memory. Multiple of these may exhaust cluster.
     
     ### Resolution: 
     Add resource limit.
