@@ -1,13 +1,21 @@
-resource "helm_repository" "stable" {
-  name = "stable"
-  url  = "https://kubernetes-charts.storage.googleapis.com"
+data "azurerm_kubernetes_cluster" "k8s" {
+  name = var.k8s_clustername
+  resource_group_name = var.k8s_resource_group_name
 }
 
+/* resource "helm_repository" "stable" {
+  name = "stable"
+  url  = "https://kubernetes-charts.storage.googleapis.com"
+} */
+
 resource "helm_release" "tensorflow-notebook" {
-  repository = "${helm_repository.stable.metadata.0.name}"
-  chart = "tensorflow-notebook"
+  //repository = "${helm_repository.stable.metadata.0.name}"
+  //repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.helm.sh/stable"
+  //repository = "https://charts.bitnami.com/bitnami"
+  chart = "tensorflow-notebook" // if stable/ added, it will try to find stable/tesnor.. in repo, hence will not find
   name = "tensorflow-notebook"
-  version = "${var.chart_version}"
+  //version = var.chart_version
   values = [
     "${file("values.yaml")}"
   ]
@@ -24,3 +32,8 @@ resource "helm_release" "tensorflow-notebook" {
     value = "${var.tensorboard_image_repository}"
   }
 }
+
+/* resource "helm_release" "redis_1" {
+  name  = "redis"
+  chart = "bitnami/redis"
+} */
