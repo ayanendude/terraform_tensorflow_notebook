@@ -1,7 +1,28 @@
-jupyter:
+ jupyter:
   password: tensorflow
 tensorboard:
   image:
     pullPolicy: IfNotPresent
 service:
-  type: NodePort
+  type: LoadBalancer 
+
+# hub:
+#   readinessDelay: 17
+#   javaOpts: "-Xmx413m"
+#   resources:
+#     limits:
+#       cpu: ".52"
+#       memory: "319Mi"
+
+
+# updateStrategy:
+#   type: RollingUpdate
+#   rollingUpdate:
+#     maxUnavailable: 1
+#     maxSurge: 1
+
+# chrome:
+#   resources:
+#     limits:
+#       cpu: ".8"
+#       memory: "850Mi"

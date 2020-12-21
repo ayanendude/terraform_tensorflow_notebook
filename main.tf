@@ -37,3 +37,12 @@ resource "helm_release" "tensorflow-notebook" {
   name  = "redis"
   chart = "bitnami/redis"
 } */
+
+/* resource "helm_release" "selenium_1" {
+  repository = "https://charts.helm.sh/stable"
+  name  = "selenium"
+  chart = "selenium"
+  values = [
+    "${file("values.yaml")}"
+  ]
+} */
