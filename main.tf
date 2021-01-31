@@ -8,7 +8,7 @@ data "azurerm_kubernetes_cluster" "k8s" {
   url  = "https://kubernetes-charts.storage.googleapis.com"
 } */
 
-resource "helm_release" "tensorflow-notebook" {
+/* resource "helm_release" "tensorflow-notebook" {
   //repository = "${helm_repository.stable.metadata.0.name}"
   //repository = "https://kubernetes-charts.storage.googleapis.com"
   repository = "https://charts.helm.sh/stable"
@@ -31,18 +31,42 @@ resource "helm_release" "tensorflow-notebook" {
     name  = "tensorboard.image.repository"
     value = "${var.tensorboard_image_repository}"
   }
-}
+} */
 
 /* resource "helm_release" "redis_1" {
   name  = "redis"
   chart = "bitnami/redis"
 } */
 
-/* resource "helm_release" "selenium_1" {
+resource "helm_release" "selenium_1" {
   repository = "https://charts.helm.sh/stable"
   name  = "selenium"
   chart = "selenium"
   values = [
     "${file("values.yaml")}"
   ]
-} */
+  set {
+    name  = "chrome.replicas"
+    value = 2
+  }
+  set {
+    name  = "firefox.replicas"
+    value = 1
+  }
+  set {
+    name = "chrome.enabled"
+    value = "true"
+  }
+  set {
+    name = "firefox.enabled"
+    value = "true"
+  }
+  set {
+    name = "chrome.pullPolicy"
+    value = "Always"
+  }
+  set {
+    name = "firefox.pullPolicy"
+    value = "Always"
+  }
+}
