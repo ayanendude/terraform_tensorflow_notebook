@@ -23,6 +23,7 @@ provider "template" {
 
 provider "azurerm" {
   version         = "1.44"
+  //version         ~> "2.0.0"
   subscription_id = var.subscription_id
   tenant_id       = var.tenant_id
   client_id       = var.client_id
