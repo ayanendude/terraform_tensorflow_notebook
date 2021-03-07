@@ -39,7 +39,7 @@ node {
                 // sh 'export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET'
                 // sh 'export ARM_SUBSCRIPTION_ID=e4c8884e-3378-4478-917f-2d8ef1106b8f'
                 // sh 'export ARM_TENANT_ID=69894ea5-714b-432f-9350-6f7d1ff0d39d'
-                sh "/usr/local/bin/terraform plan -out plat_out"
+                sh "/usr/local/bin/terraform plan -out=/Users/ayanendude/Desktop/git/tf_tensorflow_notebook/plat_out -state=/Users/ayanendude/Desktop/git/tf_tensorflow_notebook/terraform.tfstate"
                 sh "pwd"
             }
         }
@@ -88,9 +88,9 @@ node {
                 withCredentials([string(credentialsId: 'aks1', variable: 'AZURE_CLIENT_SECRET')]){
                     sh "/Users/ayanendude/bin/az login --allow-no-subscriptions --tenant $AZURE_TENANT_ID"
                     if( "${USER_INPUT}" == "Apply"){
-                        sh "/usr/local/bin/terraform apply -auto-approve"
+                        sh "/usr/local/bin/terraform apply -auto-approve -state=/Users/ayanendude/Desktop/git/tf_tensorflow_notebook/terraform.tfstate"
                     } else {
-                        sh "/usr/local/bin/terraform destroy -auto-approve"
+                        sh "/usr/local/bin/terraform destroy -auto-approve -state=/Users/ayanendude/Desktop/git/tf_tensorflow_notebook/terraform.tfstate"
                     }
                 }
             }
