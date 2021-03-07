@@ -44,13 +44,13 @@ node {
             }
         }
 
-        stage ('Display plan out'){
-            // withCredentials([string(credentialsId: 'aks1', variable: 'AZURE_CLIENT_SECRET')]){
-            //     sh "/Users/ayanendude/bin/az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID"
-            // }
-            // sh '/Users/ayanendude/bin/az account set -s $AZURE_SUBSCRIPTION_ID'
-            sh "/usr/local/bin/terraform show -json plat_out"
-        }
+        // stage ('Display plan out'){
+        //     // withCredentials([string(credentialsId: 'aks1', variable: 'AZURE_CLIENT_SECRET')]){
+        //     //     sh "/Users/ayanendude/bin/az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID"
+        //     // }
+        //     // sh '/Users/ayanendude/bin/az account set -s $AZURE_SUBSCRIPTION_ID'
+        //     sh "/usr/local/bin/terraform show -json plat_out"
+        // }
     //}
         stage ('Approval Process') {
             timeout(time: 15, unit: "MINUTES") {
