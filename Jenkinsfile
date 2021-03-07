@@ -58,24 +58,39 @@ node {
     }
 }
 node {
-    stage ('Terraform apply or destroy') {
-        script {
-            // Define Variable
-            def USER_INPUT = input(
-                    message: 'Do you want to create(Apply) or remove(Destroy) resources? ',
-                    parameters: [
-                            [$class: 'ChoiceParameterDefinition',
-                            choices: ['Apply','Destroy'].join('\n'),
-                            name: 'input',
-                            description: 'Menu - select box option']
-                    ])
 
-            echo "The answer is: ${USER_INPUT}"
+    withEnv(
+    [
+    'AZURE_CLIENT_ID=358fcee4-2630-44c5-ba1c-7749e1bd0b3e',
+    'AZURE_SUBSCRIPTION_ID=e4c8884e-3378-4478-917f-2d8ef1106b8f',
+    'AZURE_TENANT_ID=69894ea5-714b-432f-9350-6f7d1ff0d39d',
+    'PATH+EXTRA=/usr/local/bin',
+    'ARM_CLIENT_ID=358fcee4-2630-44c5-ba1c-7749e1bd0b3e',
+    'ARM_SUBSCRIPTION_ID=e4c8884e-3378-4478-917f-2d8ef1106b8f',
+    'ARM_TENANT_ID=69894ea5-714b-432f-9350-6f7d1ff0d39d']
+    ) {
+        stage ('Terraform apply or destroy') {
+            script {
+                // Define Variable
+                def USER_INPUT = input(
+                        message: 'Do you want to create(Apply) or remove(Destroy) resources? ',
+                        parameters: [
+                                [$class: 'ChoiceParameterDefinition',
+                                choices: ['Apply','Destroy'].join('\n'),
+                                name: 'input',
+                                description: 'Menu - select box option']
+                        ])
 
-            if( "${USER_INPUT}" == "Apply"){
-                sh "/usr/local/bin/terraform apply -auto-approve"
-            } else {
-                sh "/usr/local/bin/terraform destroy -auto-approve"
+                echo "The answer is: ${USER_INPUT}"
+
+                withCredentials([string(credentialsId: 'aks1', variable: 'AZURE_CLIENT_SECRET')]){
+                    sh "/Users/ayanendude/bin/az login --allow-no-subscriptions --tenant $AZURE_TENANT_ID"
+                    if( "${USER_INPUT}" == "Apply"){
+                        sh "/usr/local/bin/terraform apply -auto-approve"
+                    } else {
+                        sh "/usr/local/bin/terraform destroy -auto-approve"
+                    }
+                }
             }
         }
     }
