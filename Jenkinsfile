@@ -40,6 +40,7 @@ node {
                 // sh 'export ARM_SUBSCRIPTION_ID=e4c8884e-3378-4478-917f-2d8ef1106b8f'
                 // sh 'export ARM_TENANT_ID=69894ea5-714b-432f-9350-6f7d1ff0d39d'
                 sh "/usr/local/bin/terraform plan -out plat_out"
+                sh "pwd"
             }
         }
 
